@@ -1,0 +1,8 @@
+{
+    "arch": "x86_64", 
+    "cpu": "Intel(R) Core(TM) i7-3615QM CPU @ 2.30GHz", 
+    "machine": "gaia", 
+    "os": "Darwin 14.1.0", 
+    "ram": "17179869184", 
+    "version": 1
+}
