@@ -1,6 +1,9 @@
 # Write the benchmarking functions here.
 # See "Writing benchmarks" in the asv docs for more information.
 
+import metadatastore
+import metadatastore.api as mdsc
+
 
 class TimeSuite:
     """
@@ -8,6 +11,9 @@ class TimeSuite:
     of iterating over dictionaries in Python.
     """
     def setup(self):
+        metadatastore.conf.mds_config['database'] = 'benchmark'
+        metadatastore.conf.mds_config['host'] = '127.0.0.1'
+        metadatastore.conf.mds_config['port'] = 27017
         self.d = {}
         for x in range(500):
             self.d[x] = None
