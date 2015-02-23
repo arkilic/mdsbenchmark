@@ -1,8 +1,7 @@
-# Write the benchmarking functions here.
-# See "Writing benchmarks" in the asv docs for more information.
-
+__author__ = 'arkilic'
 import metadatastore
 import metadatastore.api as mdsc
+import numpy as np
 
 
 class Suite:
@@ -26,6 +25,26 @@ class Suite:
                                    'shape': None}}
         self.custom = {'custom_key': 'value'}
         self.scan_id = 1903
+        self.run_start = mdsc.insert_run_start(scan_id=int(self.scan_id),
+                                               beamline_id='benchmark_b',
+                                               time=1315315135.5135,
+                                               beamline_config=self.bcfg,
+                                               custom=self.custom)
+        self.e_desc = mdsc.insert_event_descriptor(data_keys=self.data_keys,
+                                                   time=1315315135.5135,
+                                                   run_start=self.run_start)
+        func = np.cos
+        num = 1000
+        start = 0
+        stop = 10
+        sleep_time = .1
+        self.data = list()
+        for idx, i in enumerate(np.linspace(start, stop, num)):
+            self.data.append({'linear_motor': [i, 1315315135.5135],
+                              'Tsam': [i + 5, 1315315135.5135],
+                              'scalar_detector': [func(i) +
+                                                  np.random.randn() / 100,
+                                                  1315315135.5135]})
 
     def time_single_bcfg(self, n):
         for _ in self.obj:
@@ -36,10 +55,29 @@ class Suite:
 
     def time_single_runstart(self, n):
         for _ in self.obj:
-            rs = mdsc.insert_run_start(scan_id=int(self.scan_id),
-                                       beamline_id='benchmark_b',
-                                       time=1315315135.5135,
-                                       beamline_config=self.bcfg,
-                                       custom=self.custom)
+            mdsc.insert_run_start(scan_id=int(self.scan_id),
+                                  beamline_id='benchmark_b',
+                                  time=1315315135.5135,
+                                  beamline_config=self.bcfg,
+                                  custom=self.custom)
     time_single_runstart.number = 1
     time_single_runstart.repeat = 1
+
+    def time_single_descriptor(self, n):
+        for _ in self.obj:
+            mdsc.insert_event_descriptor(data_keys=self.data_keys,
+                                         time=1315315135.5135,
+                                         run_start=self.run_start)
+    time_single_descriptor.number = 1
+    time_single_descriptor.repeat = 1
+
+    def time_1K_event_insert(self, n):
+        j = 0
+        for d in self.data:
+            e = mdsc.insert_event(event_descriptor=self.e_desc,
+                                  seq_num=j,
+                                  time=1315315135.5135,
+                                  data=d)
+            j += 1
+    time_1K_event_insert.number = 1
+    time_1K_event_insert.repeat = 1
