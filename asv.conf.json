@@ -24,7 +24,7 @@
     // If missing or the empty string, the tool will be automatically
     // determined by looking for tools on the PATH environment
     // variable.
-    "environment_type": "virtualenv",
+    //"environment_type": "conda",
 
     // the base URL to show a commit for the project.
     // "show_commit_url": "http://github.com/owner/project/commit/",
@@ -39,7 +39,7 @@
     // version.
     "matrix": {"pymongo": ["2.8"],
                "mongoengine": ["0.8.7"],
-               "pyyaml": ["3.10"]
+               "pyyaml": ["3.10"],
      },
 
     // The directory (relative to the current directory) that benchmarks are

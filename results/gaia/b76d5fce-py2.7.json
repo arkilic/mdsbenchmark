@@ -5,26 +5,19 @@
         "arch": "x86_64", 
         "cpu": "Intel(R) Core(TM) i7-3615QM CPU @ 2.30GHz", 
         "machine": "gaia", 
-        "mongoengine": "0.8.7", 
         "os": "Darwin 14.1.0", 
-        "pymongo": "2.8", 
         "python": "2.7", 
-        "pyyaml": "3.10", 
         "ram": "17179869184"
     }, 
     "profiles": {}, 
     "python": "2.7", 
-    "requirements": {
-        "mongoengine": "0.8.7", 
-        "pymongo": "2.8", 
-        "pyyaml": "3.10"
-    }, 
+    "requirements": {}, 
     "results": {
         "benchmarks.MemSuite.mem_list": 2424, 
-        "benchmarks.TimeSuite.time_iterkeys": 1.0901569999999999e-05, 
-        "benchmarks.TimeSuite.time_keys": 1.153395e-05, 
-        "benchmarks.TimeSuite.time_range": 3.67251e-05, 
-        "benchmarks.TimeSuite.time_xrange": 3.5521599999999995e-05
+        "benchmarks.TimeSuite.time_iterkeys": 1.0609480000000003e-05, 
+        "benchmarks.TimeSuite.time_keys": 1.1918059999999997e-05, 
+        "benchmarks.TimeSuite.time_range": 3.487530000000002e-05, 
+        "benchmarks.TimeSuite.time_xrange": 3.414020000000001e-05
     }, 
     "version": 1
 }
