@@ -40,11 +40,12 @@
     "matrix": {"pymongo": ["2.8"],
                "mongoengine": ["0.8.7"],
                "pyyaml": ["3.10"],
+               "numpy": ["1.9.1"]
      },
 
     // The directory (relative to the current directory) that benchmarks are
     // stored in.  If not provided, defaults to "benchmarks"
-    // "benchmark_dir": "benchmarks",
+    "benchmark_dir": "benchmarks",
 
     // The directory (relative to the current directory) to cache the Python
     // environments in.  If not provided, defaults to "env"
