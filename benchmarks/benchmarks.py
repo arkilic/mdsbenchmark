@@ -1,7 +1,7 @@
 __author__ = 'arkilic'
+import numpy as np
 import metadatastore
 import metadatastore.api as mdsc
-import numpy as np
 
 
 class Suite:
@@ -26,6 +26,7 @@ class Suite:
         self.custom = {'custom_key': 'value'}
         self.scan_id = 1903
         self.run_start = mdsc.insert_run_start(scan_id=int(self.scan_id),
+                                               owner='benchmark_script',
                                                beamline_id='benchmark_b',
                                                time=1315315135.5135,
                                                beamline_config=self.bcfg,
@@ -57,6 +58,7 @@ class Suite:
         for _ in self.obj:
             mdsc.insert_run_start(scan_id=int(self.scan_id),
                                   beamline_id='benchmark_b',
+                                  owner='benchmark_script',
                                   time=1315315135.5135,
                                   beamline_config=self.bcfg,
                                   custom=self.custom)
