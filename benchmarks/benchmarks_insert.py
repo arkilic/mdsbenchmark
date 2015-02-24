@@ -34,8 +34,10 @@ class Suite:
         self.e_desc = mdsc.insert_event_descriptor(data_keys=self.data_keys,
                                                    time=1315315135.5135,
                                                    run_start=self.run_start)
+        # Compose event data list for 1mil events in setup.
+        # See params in event insert test to see how many of these are used
         func = np.cos
-        num = 1000
+        num = 1000000
         start = 0
         stop = 10
         sleep_time = .1
@@ -73,13 +75,15 @@ class Suite:
     time_single_descriptor.number = 1
     time_single_descriptor.repeat = 1
 
-    def time_1K_event_insert(self, n):
+    def time_event_insert(self, n):
         j = 0
-        for d in self.data:
+        for i in range(n):
             e = mdsc.insert_event(event_descriptor=self.e_desc,
                                   seq_num=j,
                                   time=1315315135.5135,
-                                  data=d)
+                                  data=self.data[i])
             j += 1
-    time_1K_event_insert.number = 1
-    time_1K_event_insert.repeat = 1
+    time_event_insert.number = 1
+    time_event_insert.repeat = 1
+    time_event_insert.params = [1, 10, 100, 1000, 10000]
+    # override class gloabal params
