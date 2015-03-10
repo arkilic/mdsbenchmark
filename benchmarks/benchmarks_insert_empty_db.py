@@ -1,7 +1,4 @@
-__author__ = 'arkilic'
-import uuid
 import numpy as np
-import metadatastore
 import metadatastore.api as mdsc
 
 
@@ -16,9 +13,6 @@ class Suite:
     params = [1, 10, 100, 1000]
 
     def setup(self, n):
-        metadatastore.conf.connection_config['database'] = 'benchmark-{0}'.format(str(uuid.uuid4()))
-        metadatastore.conf.connection_config['host'] = 'localhost'
-        metadatastore.conf.connection_config['port'] = 12701
         self.obj = range(n)
         self.bcfg = mdsc.insert_beamline_config(time=1315315135.5135,
                                                 config_params={'param1': 1})
